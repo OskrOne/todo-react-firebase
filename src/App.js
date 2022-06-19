@@ -1,4 +1,6 @@
+import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
 import { useState } from 'react';
+import Todo from './components/Todo';
 import './App.css';
 
 function App() {
@@ -16,11 +18,14 @@ function App() {
     <div className="App">
       <h1>TODO React Firebase</h1>
       <form>
-        <input value={input} onChange={e => setInput(e.target.value)} />
-        <button type='Submit' onClick={addTodo}>Add Todo</button>
+        <FormControl>
+          <InputLabel>Write a TODO</InputLabel>
+          <Input value={input} onChange={e => setInput(e.target.value)} />
+        </FormControl>
+        <Button type="submit" onClick={addTodo} variant="contained" color="primary" disabled={!input}>Add Todo</Button>
       </form>
       <ul>
-        {todos.map(todo => <li>{todo}</li>)}
+        {todos.map(todo => <Todo todo={todo} />)}
       </ul>
     </div>
   );
